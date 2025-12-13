@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date Calculator</title>
+    <title>How Long Ago? | Time Calculator</title>
+    <meta name="description"
+        content="Calculate the exact time difference between any date and now with beautiful animations">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <!-- Animated Background Particles -->
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <!-- Main Container -->
     <div class="container">
-        <h1>Date Calculator</h1>
-        <label for="date">Enter a Date:</label>
+        <div class="icon">⏰</div>
+        <h1>How Long Ago?</h1>
+        <p class="subtitle">Discover the exact time that has passed since any moment</p>
+
+        <label for="date">Select a Date & Time:</label>
         <input type="datetime-local" id="date" placeholder="yyyy-mm-ddThh:mm">
-        <button onclick="calculateTime()">Calculate</button>
+
+        <button onclick="calculateTime()">✨ Calculate Time</button>
+
         <p id="result"></p>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>

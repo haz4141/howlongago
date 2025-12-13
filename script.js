@@ -1,6 +1,27 @@
 function calculateTime() {
     const inputDate = new Date(document.getElementById('date').value);
     const currentDate = new Date();
+    const resultElement = document.getElementById('result');
+
+    // Validate input
+    if (!document.getElementById('date').value) {
+        resultElement.classList.remove('show');
+        setTimeout(() => {
+            resultElement.textContent = '⚠️ Please select a date and time first!';
+            resultElement.classList.add('show');
+        }, 100);
+        return;
+    }
+
+    // Check if date is in the future
+    if (inputDate > currentDate) {
+        resultElement.classList.remove('show');
+        setTimeout(() => {
+            resultElement.textContent = '🔮 This date is in the future!';
+            resultElement.classList.add('show');
+        }, 100);
+        return;
+    }
 
     const timeDifference = currentDate - inputDate;
     const secondsDifference = Math.floor(timeDifference / 1000);
@@ -36,9 +57,33 @@ function calculateTime() {
         result.push(`${seconds} second${seconds > 1 ? 's' : ''}`);
     }
 
-    if (result.length === 0) {
-        document.getElementById('result').textContent = "Just now";
-    } else {
-        document.getElementById('result').textContent = `That was ${result.join(', ')} ago.`;
-    }
+    // Remove show class first for re-animation
+    resultElement.classList.remove('show');
+    
+    // Set new content and re-add animation
+    setTimeout(() => {
+        if (result.length === 0) {
+            resultElement.textContent = '🎉 Just now!';
+        } else {
+            resultElement.textContent = `⏳ That was ${result.join(', ')} ago`;
+        }
+        resultElement.classList.add('show');
+    }, 100);
 }
+
+// Add keyboard support for Enter key
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date');
+    
+    dateInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            calculateTime();
+        }
+    });
+
+    // Set max date to current date/time
+    const now = new Date();
+    const maxDateTime = now.toISOString().slice(0, 16);
+    dateInput.setAttribute('max', maxDateTime);
+});
+
