@@ -29,18 +29,23 @@ function calculateTime() {
     const hoursDifference = Math.floor(minutesDifference / 60);
     const daysDifference = Math.floor(hoursDifference / 24);
     const monthsDifference = Math.floor(daysDifference / 30); // Approximation
-	
+    const yearsDifference = Math.floor(monthsDifference / 12); // Approximation
+
 
     const seconds = secondsDifference % 60;
     const minutes = minutesDifference % 60;
     const hours = hoursDifference % 24;
     const days = daysDifference % 30;
-    const months = monthsDifference % 30;
+    const months = monthsDifference % 12;
+    const years = yearsDifference;
 
 
     const result = [];
 
 
+    if (years > 0) {
+        result.push(`${years} year${years > 1 ? 's' : ''}`);
+    }
     if (months > 0) {
         result.push(`${months} month${months > 1 ? 's' : ''}`);
     }
@@ -59,7 +64,7 @@ function calculateTime() {
 
     // Remove show class first for re-animation
     resultElement.classList.remove('show');
-    
+
     // Set new content and re-add animation
     setTimeout(() => {
         if (result.length === 0) {
@@ -72,10 +77,10 @@ function calculateTime() {
 }
 
 // Add keyboard support for Enter key
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const dateInput = document.getElementById('date');
-    
-    dateInput.addEventListener('keypress', function(event) {
+
+    dateInput.addEventListener('keypress', function (event) {
         if (event.key === 'Enter') {
             calculateTime();
         }
