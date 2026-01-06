@@ -297,32 +297,7 @@ button:active {
     }
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .container {
-        padding: 40px 25px;
-        border-radius: 25px;
-    }
 
-    h1 {
-        font-size: 32px;
-    }
-
-    .subtitle {
-        font-size: 14px;
-    }
-
-    input,
-    button {
-        font-size: 15px;
-        padding: 16px 20px;
-    }
-
-    #result {
-        font-size: 18px;
-        padding: 18px;
-    }
-}
 
 /* Loading Animation */
 @keyframes pulse {
@@ -466,9 +441,23 @@ button:active {
 
 /* Responsive Design for Layout */
 @media (max-width: 900px) {
+    body {
+        padding: 20px 15px;
+        min-height: 100vh;
+        height: auto;
+        overflow-y: auto;
+    }
+
     .main-layout {
         flex-direction: column;
         align-items: center;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 500px;
     }
 
     .quick-stats-panel {
@@ -478,8 +467,48 @@ button:active {
 }
 
 @media (max-width: 600px) {
+    body {
+        padding: 15px 10px;
+    }
+
+    .main-layout {
+        gap: 20px;
+    }
+
+    .container {
+        padding: 35px 20px;
+        border-radius: 25px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        margin-bottom: 30px;
+    }
+
+    .icon {
+        font-size: 50px;
+        margin-bottom: 15px;
+    }
+
+    input,
+    button {
+        font-size: 14px;
+        padding: 14px 18px;
+        border-radius: 12px;
+    }
+
+    #result {
+        font-size: 16px;
+        padding: 15px;
+        border-radius: 12px;
+    }
+
     .quick-stats-panel {
-        padding: 30px 20px;
+        padding: 25px 18px;
         border-radius: 25px;
     }
 
@@ -487,15 +516,95 @@ button:active {
         font-size: 20px;
     }
 
+    .panel-subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .stat-buttons {
+        gap: 10px;
+    }
+
     .stat-btn {
-        padding: 14px 16px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        gap: 10px;
+    }
+
+    .stat-btn .btn-icon {
+        font-size: 20px;
     }
 
     .stat-btn .btn-text {
         font-size: 13px;
     }
 
-    .quick-result .result-value {
-        font-size: 22px;
+    .quick-result {
+        padding: 16px;
+        border-radius: 12px;
+        margin-top: 15px;
     }
+
+    .quick-result .result-label {
+        font-size: 12px;
+    }
+
+    .quick-result .result-value {
+        font-size: 20px;
+    }
+
+    .quick-result .result-unit {
+        font-size: 12px;
+    }
+
+    /* Hide particles on mobile for better performance */
+    .particle {
+        display: none;
+    }
+
+    .footer {
+        margin-top: 20px;
+    }
+}
+
+/* Footer Styles */
+.footer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+.footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    position: relative;
+}
+
+.footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-gradient);
+    transition: width 0.3s ease;
+}
+
+.footer a:hover {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.footer a:hover::after {
+    width: 100%;
 }
