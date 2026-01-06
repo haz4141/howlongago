@@ -27,17 +27,37 @@ function calculateTime() {
     const secondsDifference = Math.floor(timeDifference / 1000);
     const minutesDifference = Math.floor(secondsDifference / 60);
     const hoursDifference = Math.floor(minutesDifference / 60);
-    const daysDifference = Math.floor(hoursDifference / 24);
-    const monthsDifference = Math.floor(daysDifference / 30); // Approximation
-    const yearsDifference = Math.floor(monthsDifference / 12); // Approximation
 
+    // Calculate accurate years, months, and days using calendar dates
+    let years = currentDate.getFullYear() - inputDate.getFullYear();
+    let months = currentDate.getMonth() - inputDate.getMonth();
+    let days = currentDate.getDate() - inputDate.getDate();
+
+    // Adjust for time of day
+    const currentTime = currentDate.getHours() * 3600 + currentDate.getMinutes() * 60 + currentDate.getSeconds();
+    const inputTime = inputDate.getHours() * 3600 + inputDate.getMinutes() * 60 + inputDate.getSeconds();
+
+    if (currentTime < inputTime) {
+        days--;
+    }
+
+    // Adjust days if negative (borrow from months)
+    if (days < 0) {
+        months--;
+        // Get the number of days in the previous month
+        const prevMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+
+    // Adjust months if negative (borrow from years)
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
 
     const seconds = secondsDifference % 60;
     const minutes = minutesDifference % 60;
     const hours = hoursDifference % 24;
-    const days = daysDifference % 30;
-    const months = monthsDifference % 12;
-    const years = yearsDifference;
 
 
     const result = [];
