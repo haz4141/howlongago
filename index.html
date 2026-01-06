@@ -17,18 +17,51 @@
     <div class="particle"></div>
     <div class="particle"></div>
 
-    <!-- Main Container -->
-    <div class="container">
-        <div class="icon">⏰</div>
-        <h1>How Long Ago?</h1>
-        <p class="subtitle">Discover the exact time that has passed since any moment</p>
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Main Container -->
+        <div class="container">
+            <div class="icon">⏰</div>
+            <h1>How Long Ago?</h1>
+            <p class="subtitle">Discover the exact time that has passed since any moment</p>
 
-        <label for="date">Select a Date & Time:</label>
-        <input type="datetime-local" id="date" placeholder="yyyy-mm-ddThh:mm">
+            <label for="date">Select a Date & Time:</label>
+            <input type="datetime-local" id="date" placeholder="yyyy-mm-ddThh:mm">
 
-        <button onclick="calculateTime()">✨ Calculate Time</button>
+            <button onclick="calculateTime()">✨ Calculate Time</button>
 
-        <p id="result"></p>
+            <p id="result"></p>
+        </div>
+
+        <!-- Quick Stats Panel -->
+        <div class="quick-stats-panel">
+            <h3>📊 Quick Stats</h3>
+            <p class="panel-subtitle">Click to see exact values</p>
+
+            <div class="stat-buttons">
+                <button class="stat-btn" onclick="showExactDays()" id="btn-days">
+                    <span class="btn-icon">📅</span>
+                    <span class="btn-text">How many days?</span>
+                </button>
+
+                <button class="stat-btn" onclick="showExactHours()" id="btn-hours">
+                    <span class="btn-icon">⏰</span>
+                    <span class="btn-text">How many hours?</span>
+                </button>
+
+                <button class="stat-btn" onclick="showExactMinutes()" id="btn-minutes">
+                    <span class="btn-icon">⏱️</span>
+                    <span class="btn-text">How many minutes?</span>
+                </button>
+
+                <button class="stat-btn" onclick="showExactSeconds()" id="btn-seconds">
+                    <span class="btn-icon">⚡</span>
+                    <span class="btn-text">How many seconds?</span>
+                </button>
+            </div>
+
+            <div id="quick-result" class="quick-result"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>
